@@ -2,24 +2,24 @@
 from graphviz import Digraph
 
 ##  AVL Tree, Splay Tree, ..?
-def draw_tree(root):
+def draw_tree(racine):
     dot = Digraph()
     
-    def traverse(node):
-        if node is None:
+    def traverse(noeud):
+        if noeud is None:
             return
 
-        dot.node(str(node.key), str(node.key))
+        dot.node(str(noeud.cle), str(noeud.cle))
         
-        if node.left is not None:
-            dot.edge(str(node.key), str(node.left.key), label="L", style="dashed")
-            traverse(node.left)
+        if noeud.gauche is not None:
+            dot.edge(str(noeud.cle), str(noeud.gauche.cle), label="L", style="dashed")
+            traverse(noeud.gauche)
         
-        if node.right is not None:
-            dot.edge(str(node.key), str(node.right.key), label="R", style="solid")
-            traverse(node.right)
+        if noeud.droite is not None:
+            dot.edge(str(noeud.cle), str(noeud.droite.cle), label="R", style="solid")
+            traverse(noeud.droite)
     
-    traverse(root)
+    traverse(racine)
     return dot
 
 ## other tree ?
