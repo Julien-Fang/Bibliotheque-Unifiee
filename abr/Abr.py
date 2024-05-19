@@ -20,17 +20,17 @@ class ABR:
         '''Recherche une clé dans l'arbre binaire'''
         return self._recherche(self.racine, cle)
     
-    def _recherche(self, noeud : 'ArbreBinaire', cle : int) -> bool:
+    def _recherche(self, noeud : 'ArbreBinaire', cle : int) -> 'ArbreBinaire':
         '''ABR * ArbreBinaire * int -> bool'''
         '''Recherche une clé dans l'arbre binaire'''
         if noeud is None:
-            return False
+            return None
         elif cle < noeud.cle:
             return self._recherche(noeud.gauche, cle)
         elif cle > noeud.cle:
             return self._recherche(noeud.droite, cle)
         else:
-            return True
+            return self
 
     ## AJOUT
     

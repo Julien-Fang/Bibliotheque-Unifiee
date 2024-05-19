@@ -19,20 +19,20 @@ class TasMin:
         '''Ajoute une clé dans le tas et retourne un nouveau tas'''
         nouveauTas = TasMin()
         nouveauTas.tas = self.tas.copy()
-        nouveauTas.tas = self._ajout(nouveauTas, cle)
+        nouveauTas.tas = nouveauTas._ajout(cle)
         return nouveauTas
     
-    def _ajout(self, tas : 'TasMin', cle : int) -> list:
+    def _ajout(self, cle : int) -> list:
         '''Tas * int -> list'''
         '''Ajoute une clé dans le tas et retourne le tas modifié'''
-        tas.tas.append(cle)  # add the new key
-        i = len(tas.tas) - 1
+        self.tas.append(cle)  # add the new key
+        i = len(self.tas) - 1
         # moves it up (swap with parent) until it satisfies the tas property
-        while (i != 0) and tas.tas[i] < tas.tas[tas._parent(i)]:
-            tas.tas[i], tas.tas[tas._parent(i)] = (
-                tas.tas[tas._parent(i)], tas.tas[i])
-            i = tas._parent(i)
-        return tas.tas
+        while (i != 0) and self.tas[i] < self.tas[self._parent(i)]:
+            self.tas[i], self.tas[self._parent(i)] = (
+                self.tas[self._parent(i)], self.tas[i])
+            i = self._parent(i)
+        return self.tas
 
     # SupprMin
     def extractMin(self) -> (int, 'TasMin'):
