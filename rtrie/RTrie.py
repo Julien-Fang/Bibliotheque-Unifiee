@@ -108,13 +108,17 @@ class RTrie:
     def _recherche(self, mot, noeud):
         """RTrie * str * rtrie -> bool"""
         """Recherche un mot dans l'arbre R-Trie."""
+        print(mot)
         if noeud is None:
+            print("noeud None")
             return False
 
         if len(mot) == 1 and noeud.c == mot : # Si nous sommes à la fin du mot et il contient une valeur 
+            print("mot : ",mot)
             return noeud.v is not None
 
         p = self.prem(mot)
+        print("p : ",p)
         return self._recherche(self.reste(mot), noeud.enfants[p])
 
 
