@@ -164,19 +164,6 @@ class PageB:
             Retourne soit le parent de self, soit la nouvelle racine.
             Hypothese : eclatement si len(self.cles) = 2*ordre+1 (debordement)
         """
-        # Etapes :
-        # - eclater self en 2 nouvelles pages : pageMoitieGauche et pageMoitieDroite,
-        #   qui deviennent enfants du parent de self a la place de self (supprimer self
-        #   des enfants de son parent)
-        # - le parent recupere la cle mediane des cles de self
-        # - les enfants de self enfantsGauche et enfantsDroite deviennent
-        #   respectivement les enfants de pageMoitieGauche et pageMoitieDroite
-        #   (remarque : si self a k cles alors self a k+1 enfants -> nombre d'enfants
-        #   donc egal a 2*(ordre+1) -> pair)
-        # - cas 1 : self a un parent -> suivre les etapes du dessus
-        # - cas 2 : self n'a pas de parent car c'est la racine
-        #   -> creer une nouvelle racine qui a pour unique
-        #      cle la cle mediane et comme enfants les 2 nouvelles pages
 
         moitie = floor(len(self.cles)/2)
         cleMediane = self.cles[moitie]
@@ -397,22 +384,7 @@ class ArbreB:
         return nouvellePage, nouvelIndicePage
     
 
-
-    # def suppression_version_preemptive(self, cle):
-    #     """ Suppression de la cle cle dans l'arbre-B self en utilisant
-    #         une verification preemptive des proprietes de l'arbre-B avant 
-    #         de descendre dans un noeud. Cf. Cormen Introduction a l'algorithmique.
-    #         Hypothese : l'ordre de l'arbre-B est pair.
-    #         Remarque : la suppression preemptive evite la remontee supplementaire dans
-    #         l'arbre pour verifier les proprietes de l'arbre-B.
-    #     """
-    #     assert self.ordre % 2 == 0, "suppression_version_preemptive : ordre doit etre pair!"
-    #     if self.est_vide():
-    #         return
-    #     else:
-    #         self.racine = self._suppression_version_preemptive(self.racine, cle)
     def visualiser_arbre(arbreB):
-        # dot = Digraph()
         dot = Digraph(node_attr={'shape': 'record', 'height': '0.1', 'width': '0.02'})
         index = 0
 
@@ -434,8 +406,7 @@ class ArbreB:
 
             buffer = bufferNoeud(pageB.cles)
             dot.node(str(index), nohtml(buffer))
-            # index += 1
-            
+
             idParent = index
             for i in range(len(pageB.enfants)):
                 parent = str(idParent) + ":f" + str(2*i)
